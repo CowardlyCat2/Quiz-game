@@ -1,4 +1,4 @@
-mport random
+import random
 #This gets the questions for the true or false quiz
 def get_tof_questions():
     statements = []
