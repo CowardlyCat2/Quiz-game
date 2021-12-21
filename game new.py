@@ -12,7 +12,7 @@ def get_tof_questions():
     statements.append(["Marrakesh is the capital of Morocco","F"])
     statements.append(["Idina Menzel sings 'let it go' 20 times in 'Let It Go' from Frozen","F"])
     statements.append(["Waterloo has the greatest number of tube platforms in London","T"])
-    return statements 
+    return statements
 
 #This gets the questions for the genral knowledge quiz
 def get_questions():
