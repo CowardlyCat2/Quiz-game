@@ -43,12 +43,43 @@ def get_history_questions():
     statements.append(["Which Hertfordshire town was the first ever New Town after WWII?","STEVENAGE"])
     return statements
 
+#this is where the multiple choice questions are created
+def get_mul_questions():
+    statements = []
+    statements.append(["Which planet is closest to the sun?","A: Venus","B: Mercury","C: Mars","D: Saturn","B"])
+    statements.append(["What is the longest that an elephant has lived?","A: 17 years","B: 49 years","C: 86 years","D: 109 years","C"])
+    statements.append(["How did spider man get his powers?","A: Experiment went wrong","B: Born with them","C: Got them after a dream","D: Bitten by a radiocative spider","D"])
+    statements.append(["Which animal dosn't appear in the Chinese zodiac?","A: Bear","B: Rabbit","C: Dragon","D: Dog","A"])
+    statements.append(["How many holes are there on a standard bowling ball?","A: 1","B: 2","C: 3","D: 5","C"])
+    statements.append(["What are the main colors on the the Spanish flag","A: Black and yellow","B: Green and white","C: Blue and white","D: Red and yellow","D"])
+    statements.append(["In the nursery rhyme, how many blackbirds were baked in a pie?","A: 3","B: 13","C: 24","D: 36","C"])
+    return statements
+
+#this is where the multiple choice questions are played
+def play_multiple_choice():
+    questions = get_mul_questions()
+    random.shuffle(questions)
+    score = 0
+    print("Please answer with A,B,C,D")
+    for s in questions[:5]:
+        print("\n"+s[0])
+        for counter in range(1,5):
+            print(s[counter])
+        guess = input("What is your guess? ")
+        if guess.upper() == s[5]:
+            print("Correct")
+            score = score + 1
+        else:
+            print("Incorrect: The correct answer was",s[5])
+    print("Your final score is",str(score)+"/5")
+
 #This is where the true of false quiz is played
 def play_tof_quiz():
     questions = get_tof_questions()
     random.shuffle(questions)
     score = 0
     print("Please answer with T for true or F for false")
+    print("\n")
     for s in questions[:5]:
         guess = input("True of false: "+s[0]+" ")
         if guess.upper() == s[1]:
@@ -63,6 +94,7 @@ def play_multiple():
     questions = get_questions()
     random.shuffle(questions)
     score = 0
+    print("\n")
     for s in questions[:5]:
         guess = input(s[0]+" ")
         if guess.upper() == s[1]:
@@ -77,6 +109,7 @@ def play_history_quiz():
     questions = get_history_questions()
     random.shuffle(questions)
     score = 0
+    print("\n")
     for s in questions[:5]:
         guess = input(s[0]+" ")
         if guess.upper() == s[1]:
@@ -403,6 +436,7 @@ def quizes_menu():
     print("| 1. True or false quiz    |")
     print("| 2. Genral knowledge quiz |")
     print("| 3. History quiz          |")
+    print("| 4. Multiple choice       |")
     print("| 0. Back                  |")
     print("+--------------------------+")
     choice = input("What do you want to do? ")
@@ -412,12 +446,14 @@ def quizes_menu():
         play_multiple()
     elif choice == "3":
         play_history_quiz()
+    elif choice == "4":
+        play_multiple_choice()
     elif choice == "0":
         menu = 1
     return menu
 
 #this is where the game menu is
-def quizes_menu():
+def game_menu():
     menu = 3
     print("+--------------------------+")
     print("| Welcome to the game menu |")
@@ -449,7 +485,7 @@ while replay == 0:
         menu = quizes_menu()
     elif menu == 4:
         print("\n")
-        menu = quizes_menu()
+        menu = game_menu()
     elif menu == 0:
         replay = 1
     else:
