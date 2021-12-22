@@ -55,6 +55,62 @@ def get_mul_questions():
     statements.append(["In the nursery rhyme, how many blackbirds were baked in a pie?","A: 3","B: 13","C: 24","D: 36","C"])
     return statements
 
+#This is where the questions are got for round 1 of the round of quizes
+def get_questions_round_1():
+    statements = []
+    statements.append(["In the UK, the abbreviation NHS stands for National 'What' Service?","HEALTH"])
+    statements.append(["Which Disney character famously leaves a glass slipper behind at a royal ball?","CINDERELLA"])
+    statements.append(["What name is given to the revolving belt machinery in an airport that delivers checked luggage from the plane to baggage reclaim?","CAROUSEL"])
+    statements.append(["Which of these products is sold by the brands Colgate, Oral-B and Sensodyne?","TOOTHPASTE"])
+    statements.append(["Which tool was used as a weapon by the Norse god Thor?","HAMMER"])
+    statements.append(["What is the name of the classic dessert consisting of sponge cake and ice cream covered in meringue?","BAKES ALASKA"])
+    statements.append(["Trigonometry is a branch of which subject?","MATHS"])
+    return statements
+
+#This is where the questions are got for round 2 of the round of quizes
+def get_questions_round_2():
+    statements = []
+    statements.append(["The hammer and sickle is one of the most recognisable symbols of which political ideology?","COMMUNISM"])
+    statements.append(["Which toys have been marketed with the phrase 'Robots in Disguise'?","TRANSFORMERS"])
+    statements.append(["What does the word loquacious mean?","CHATTY"])
+    statements.append(["Lily Savage was a persona of which TV personality?","PAUL O'GRADY"])
+    statements.append(["Which of these means a speech in a play where a character talks to themselves rather than to other characters?","SOLILOQUY"])
+    statements.append(["Which of these is a religious event celebrated in Hinduism?","DIWALI"])
+    return statements
+
+#This is where the questions are got for round 3 of the round of quizes
+def get_questions_round_3():
+    statements = []
+    statements.append(["Obstetrics is a branch of medicine particularly concerned with what?","CHILDBIRTH"])
+    statements.append(["At the closest point, which island group is only 50 miles south-east of the coast of Florida?","BAHAMAS"])
+    statements.append(["British athlete Katarina Johnson-Thompson became a world champion in which athletics event in 2019?","HEPTATHLON"])
+    statements.append(["How many breeds of elephant are there?","THREE"])
+    statements.append(["Which Disney Princess has the least amount of screen time?","AURORA"])
+    statements.append(["What is Shakespeare's shortest play?","THE COMEDY OF ERRORS"])
+    return statements
+
+#This is where the questions are got for round 4 of the round of quizes
+def get_questions_round_4():
+    statements = []
+    statements.append(["Who is the only British politician to have held all four 'Great Offices of State' at some point during their career? ","JAMES CALLAGHAN"])
+    statements.append(["In the opera by Rossini, what is the first name of The Barber of Seville","FIGARO"])
+    statements.append(["Which toxic substance is obtained from the pressed seeds of the castor oil plant?","RICIN"])
+    statements.append(["The Twelve Apostles is a series of peaks connected to which mountain?","TABLE MOUNTAIN"])
+    statements.append(["First performed in 1804, Beethoven's Eroica Symphony was originally dedicated to which historical figure?","NAPOLEON BONAPARTE"])
+    statements.append(["What is Prince William's full name?","WILLIAM ARTHUR PHILIP LOUIS WINDSOR"])
+    return statements
+
+#This is where the questions are got for round 5 of the round of quizes
+def get_questions_round_5():
+    statements = []
+    statements.append(["In 1718, which pirate died in battle off the coast of what is now North Carolina?","BLACKBEARD"])
+    statements.append(["How many stars are on the national flag of USA?","50"])
+    statements.append(["In terms of volume, which is the largest fresh lake in the world?","LAKE BAIKAL"])
+    statements.append(["What year was Marmite invented? A) 1902 B) 1929 C) 1899","1902"])
+    statements.append(["In Harry Potter, where does Vernon Dursley work?","GRUNNINGS"])
+    statements.append(["Who won the first football world cup","URUGAY"])
+    return statements
+
 #this is where the multiple choice questions are played
 def play_multiple_choice():
     questions = get_mul_questions()
@@ -376,6 +432,52 @@ def text_ad_game():
             start()
     start()
     
+#this is where the round of quizes are played
+def play_round_of_quizes():
+    print("There are 5 rounds in this quiz, as you go the questions get harder!"
+    "\nGood Luck")
+    round = 1
+    print("\n")
+    while True:
+        if round == 1:
+            questions = get_questions_round_1()
+            score = 0
+            print("\nRound 1")
+        elif round == 2:
+            questions = get_questions_round_2()
+            score = 0
+            print("\nRound 2")
+        elif round == 3:
+            questions = get_questions_round_3()
+            score = 0
+            print("\nRound 3")
+        elif round == 4:
+            questions = get_questions_round_4()
+            score = 0
+            print("\nRound 4")
+        elif round == 5:
+            questions = get_questions_round_5()
+            score = 0
+            print("\nRound 5")
+        elif round == 6:
+            print("\nWell done, You have completed the quiz")
+            break
+        else:
+            break
+        random.shuffle(questions)
+        for s in questions[:5]:
+            guess = input(s[0]+" ")
+            if guess.upper() == s[1]:
+                print("Correct")
+                score = score + 1
+            else:
+                print("Incorrect, the correct answer was ",s[1])
+        if score == 5:
+            round = round + 1
+        else:
+            print("\n You did not answer all the questions correctly!")
+            break
+
 #this is where the main menu is shown
 def main_menu():
     menu = 1
@@ -436,7 +538,8 @@ def quizes_menu():
     print("| 1. True or false quiz    |")
     print("| 2. Genral knowledge quiz |")
     print("| 3. History quiz          |")
-    print("| 4. Multiple choice       |")
+    print("| 4. Multiple choice quiz  |")
+    print("| 5. Round of quizes       |")
     print("| 0. Back                  |")
     print("+--------------------------+")
     choice = input("What do you want to do? ")
@@ -448,6 +551,8 @@ def quizes_menu():
         play_history_quiz()
     elif choice == "4":
         play_multiple_choice()
+    elif choice == "5":
+        play_round_of_quizes()
     elif choice == "0":
         menu = 1
     return menu
